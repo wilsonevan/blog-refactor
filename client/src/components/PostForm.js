@@ -1,31 +1,26 @@
 import React from 'react';
 import { connect, } from 'react-redux';
+import { updatePost, addPost, } from '../reducers/posts'
 import { Form, Button, } from 'semantic-ui-react';
 
 class PostForm extends React.Component {
-  state = { title: '', content: '', headerFlag: false, };
 
+  initialState = { title: '', content: '', }
+  
+  state = { ...this.initialState };
 
-  // componentDidMount() {
-  //   let headerFlag = false
-  //   // debugger
-
-  //   if ( this.state.title != "" ){
-  //     headerFlag = true
-  //   }
-
-  //   this.setState( {title: this.state.title, content: this.state.content, headerFlag: headerFlag, } )
-  // }
+  componentDidMount() {
+    if (this.props.post) 
+      this.setState({ ...this.props.post, });
+  }
 
   handleSubmit = (e) => {
-		e.preventDefault();
-    const { dispatch, id, } = this.props;
-    const { title, content } = this.state;
-    // debugger
-		const post = { title, id, content, };
-		dispatch({ type: 'ADD_POST', post, });
-		// dispatch({ type: 'INC_ID', });
-    this.setState({ title: '', content: '', });
+    e.preventDefault();
+    const post = { ...this.state, };
+    const { dispatch, } = this.props;
+    const func = post.id ? updatePost : addPost;
+    dispatch(func(post));
+    this.setState(this.initialState);
   }
 
   handleChange = (e) => {
@@ -34,12 +29,12 @@ class PostForm extends React.Component {
   }
 
   render() {
-    const { title, content } = this.state;
+    const { title, content } = this.props;
        
     return (
       <div>
         <h3>{ this.state.headerFlag ? 'Edit Post' : 'Add a Post' }</h3>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <Form.Input 
               label='Post Title'
@@ -55,20 +50,19 @@ class PostForm extends React.Component {
             label='Content' 
             placeholder='Content goes here...' 
             value={content} 
-            onChange={this.handleChange} 
+            onChange={this.handleChange}
           />
-          <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
+          <Button type='submit' >Submit</Button>
         </Form>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  // debugger
-  const newId = state.nextId
+  // const mapStateToProps = (state, props, ) => {
+  // 	return { 
+  //     post: state.posts.find( post => post.id === parseInt(props.match.params.id) )
+  //   };
+  // };
 
-	return { id: newId, };
-};
-
-export default connect(mapStateToProps)(PostForm);
+export default connect()(PostForm);

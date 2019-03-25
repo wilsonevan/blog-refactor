@@ -3,37 +3,40 @@ import { connect, } from 'react-redux';
 import { Link, } from 'react-router-dom';
 import { Card, Button, } from 'semantic-ui-react';
 import PostForm from './PostForm';
+import { deletePost, addPost } from '../reducers/posts';
 // import { map } from 'rsvp';
 
-class PostEdit extends React.Component {
+const PostEdit = ({ post = {}, dispatch }) => {
 
-	componentDidMount() {
-	}
-	render() {
+	const { title, content, id} = post
 
-		const { title, content } = this.props.posts[this.props.match.params.id]
-		
-		return (
-			<div>
-				<Button as={Link} to={`/`} color='grey' size='mini'>Back</Button>
-				{/* <Button color='blue' size='mini'>Edit</Button> */}
-				<Button color='red' size='mini'>Delete</Button>
-				<PostForm />
-				<hr />
-				View Post:
-				<Card fluid>
-					<Card.Content>
-						<Card.Header>{ title }</Card.Header>
-						<Card.Description>{ content }</Card.Description>
-					</Card.Content>
-				</Card>
-			</div>
-		)
-	}
+	// handleDelete = (id) => {
+	// 	dispatch(deletePost(id));
+	// }
+	
+	return (
+		<div>
+			<Button as={Link} to={`/`} color='grey' size='mini'>Back</Button>
+			{/* <Button color='blue' size='mini'>Edit</Button> */}
+			<Button color='red' size='mini' onClick={ () => dispatch(deletePost(id)) } as={Link} to={`/`} >Delete</Button>
+			<PostForm post={post}/>
+			<hr />
+			View Post:
+			<Card fluid>
+				<Card.Content>
+					<Card.Header>{ title }</Card.Header>
+					<Card.Description>{ content }</Card.Description>
+				</Card.Content>
+			</Card>
+		</div>
+	)
 }
 
-const mapStateToProps = (store) => {
-  return { posts: store.posts, };
+const mapStateToProps = (state, props, ) => {
+	return {
+		post: state.posts.find( post => post.id === parseInt(props.match.params.id) )
+		// this.state.match.params.id
+	}
 }
 
 export default connect(mapStateToProps)(PostEdit);

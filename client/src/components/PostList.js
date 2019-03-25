@@ -3,6 +3,7 @@ import { Link, } from 'react-router-dom';
 import { connect, } from 'react-redux';
 import { Card, Button, } from 'semantic-ui-react';
 import PostView from './PostView'
+import PostForm from './PostForm';
 import { getPosts, } from '../reducers/posts';
 
 class PostList extends React.Component {
@@ -14,6 +15,7 @@ class PostList extends React.Component {
   render() {
     return (
       <div>
+        <PostForm />
         <h3>PostList</h3>
         <Card.Group>
         { this.props.posts.map( (post) => {
@@ -28,8 +30,9 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  // debugger
-  return { posts: state.posts, };
+  return { 
+    posts: state.posts,
+  };
 }
 
 export default connect(mapStateToProps)(PostList);
