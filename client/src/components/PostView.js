@@ -3,7 +3,7 @@ import React from 'react'
 import { Link, } from 'react-router-dom';
 import { Card, Button, } from 'semantic-ui-react';
 
-const BlogView = ({ id, title, content, }) => {
+const PostView = ({ id, title, content, }) => {
 
   return (
     <Card fluid>
@@ -12,7 +12,7 @@ const BlogView = ({ id, title, content, }) => {
         <Card.Description>{ content }</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button as={Link} to={`/blogs/${id}`} color='blue' size='mini'>View</Button>
+        <Button as={Link} to={`/posts/${id}`} color='blue' size='mini'>View</Button>
       </Card.Content>
     </Card>
   )
@@ -22,4 +22,4 @@ const BlogView = ({ id, title, content, }) => {
 //   return { blogs: store.blogs, };
 // }
 
-export default BlogView;
+export default PostView;

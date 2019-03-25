@@ -2,25 +2,25 @@ import React from 'react'
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router-dom';
 import { Card, Button, } from 'semantic-ui-react';
-import BlogForm from './BlogForm';
-import { map } from 'rsvp';
+import PostForm from './PostForm';
+// import { map } from 'rsvp';
 
-class BlogView extends React.Component {
+class PostEdit extends React.Component {
 
 	componentDidMount() {
 	}
 	render() {
 
-		const { title, content } = this.props.blogs[this.props.match.params.id]
+		const { title, content } = this.props.posts[this.props.match.params.id]
 		
 		return (
 			<div>
 				<Button as={Link} to={`/`} color='grey' size='mini'>Back</Button>
 				{/* <Button color='blue' size='mini'>Edit</Button> */}
 				<Button color='red' size='mini'>Delete</Button>
-				<BlogForm />
+				<PostForm />
 				<hr />
-				View Blog Post:
+				View Post:
 				<Card fluid>
 					<Card.Content>
 						<Card.Header>{ title }</Card.Header>
@@ -33,7 +33,7 @@ class BlogView extends React.Component {
 }
 
 const mapStateToProps = (store) => {
-  return { blogs: store.blogs, };
+  return { posts: store.posts, };
 }
 
-export default connect(mapStateToProps)(BlogView);
+export default connect(mapStateToProps)(PostEdit);

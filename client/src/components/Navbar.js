@@ -1,13 +1,20 @@
 import React from 'react';
+import { NavLink, } from "react-router-dom";
+import { Menu, } from "semantic-ui-react";
 
-class Home extends React.Component {
-	render() {
-		return (
-			<div>
-				Navbar
-			</div>
-		)
-	}
-}
+const Navbar = () => (
+	<Menu inverted color='grey'>
+		<Menu.Item>
+			<NavLink exact to="/">
+				Home
+			</NavLink>
+		</Menu.Item>
+		<Menu.Item>
+			<NavLink exact to="/posts">
+				Blogs
+			</NavLink>
+		</Menu.Item>
+	</Menu>
+)
 
-export default Home;
+export default Navbar;

@@ -1,13 +1,13 @@
 import React from 'react';
-import BlogForm from './BlogForm';
-import BlogList from './BlogList';
+import PostForm from './PostForm';
+import PostList from './PostList';
 
 class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<BlogForm />
-				<BlogList />
+				<PostForm />
+				<PostList />
 			</div>
 		)
 	}
