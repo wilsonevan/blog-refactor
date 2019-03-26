@@ -11,7 +11,7 @@ const Navbar = () => (
 		</Menu.Item>
 		<Menu.Item>
 			<NavLink exact to="/posts">
-				Blogs
+				Blog Posts
 			</NavLink>
 		</Menu.Item>
 	</Menu>

@@ -8,7 +8,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import NoMatch from './components/NoMatch';
-import PostEdit from './components/PostEdit';
+import FetchPosts from './components/FetchPosts';
 
 const App = () => ( 
   <Fragment>
@@ -17,7 +17,7 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/about' component={About} />
-        <Route exact path='/posts/:id' component={PostEdit} />
+        <Route path='/posts' component={FetchPosts} />
         <Route component={NoMatch} />
       </Switch>
     </Container>

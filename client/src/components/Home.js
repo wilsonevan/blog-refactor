@@ -1,16 +1,9 @@
-import React from 'react';
-import PostForm from './PostForm';
-import PostList from './PostList';
+import React from 'react'
 
-class Home extends React.Component {
-	render() {
-		return (
-			<div>
-				
-				<PostList />
-			</div>
-		)
-	}
-}
+const Home = () => (
+	<div>
+		<h1>Welcome to Evan's Personal Blog</h1>
+	</div>
+)
 
 export default Home;

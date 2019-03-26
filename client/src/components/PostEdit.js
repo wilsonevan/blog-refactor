@@ -16,9 +16,9 @@ const PostEdit = ({ post = {}, dispatch }) => {
 	
 	return (
 		<div>
-			<Button as={Link} to={`/`} color='grey' size='mini'>Back</Button>
+			<Button as={Link} to={`/posts`} color='grey' size='mini'>Back</Button>
 			{/* <Button color='blue' size='mini'>Edit</Button> */}
-			<Button color='red' size='mini' onClick={ () => dispatch(deletePost(id)) } as={Link} to={`/`} >Delete</Button>
+			<Button color='red' size='mini' onClick={ () => dispatch(deletePost(id)) } as={Link} to={`/posts`} >Delete</Button>
 			<PostForm post={post}/>
 			<hr />
 			View Post:
